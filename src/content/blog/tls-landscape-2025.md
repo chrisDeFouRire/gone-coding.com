@@ -1,6 +1,6 @@
 ---
 title: "The TLS Landscape in 2025"
-description: "A look at the current state of TLS deployments, certificate usage, and security trends."
+description: "The TLS ecosystem is shifted significantly. Short-lived certificates are now the norm, automation is table stakes, and the the old model of manually renewing certificates once a year is effectively dead."
 pubDate: 2025-06-10
 heroImage: "/blog/tls-thumb.svg"
 tags: ["security", "tls", "sslboard"]

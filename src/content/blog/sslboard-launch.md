@@ -1,6 +1,6 @@
 ---
 title: "Introducing SSLBoard"
-description: "Certificate Lifecycle Management doesn't have to be complicated. We're making it simple."
+description: "SSLBoard makes certificate lifecycle management simple. Automatically discover and monitor all your SSL/TLS certificates from a single dashboard with zero ops required."
 pubDate: 2025-01-15
 heroImage: "/blog/sslboard-thumb.svg"
 tags: ["sslboard", "security", "ssl"]

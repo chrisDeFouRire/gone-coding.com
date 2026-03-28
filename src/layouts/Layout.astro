@@ -14,7 +14,7 @@ interface Props {
 
 const {
   title = 'Gone Coding',
-  description = 'Gone Coding Ltd. — Software engineering company based in Hong Kong, building developer tools and web infrastructure.',
+  description = 'Gone Coding Ltd. is a software engineering company based in Hong Kong. We build developer tools and web infrastructure products including SSLBoard, QCReady, and more.',
   canonicalUrl = new URL(Astro.url.pathname, Astro.site).href,
   ogImage = new URL('/og-default.svg', Astro.site).href,
   article = false,
@@ -78,7 +78,7 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
           <a href="/" class="inline-flex h-9 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
             Home
           </a>
-          <a href="/blog" class="inline-flex h-9 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
+          <a href="/blog/" class="inline-flex h-9 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
             Blog
           </a>
           <ThemeToggle client:load />
@@ -107,7 +107,7 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
           </div>
           <nav class="flex gap-4 text-sm text-muted-foreground" aria-label="Footer navigation">
             <a href="/" class="transition-colors hover:text-foreground">Home</a>
-            <a href="/blog" class="transition-colors hover:text-foreground">Blog</a>
+            <a href="/blog/" class="transition-colors hover:text-foreground">Blog</a>
           </nav>
         </div>
         <div class="mt-8 border-t border-border/40 pt-6">

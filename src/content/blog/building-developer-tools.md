@@ -1,6 +1,6 @@
 ---
 title: "Why We Build Developer Tools"
-description: "Our approach to building software that developers actually want to use."
+description: "We build tools we would want to use ourselves: clean interfaces, sensible defaults, and software that solves one problem completely rather than five problems adequately."
 pubDate: 2025-03-01
 heroImage: "/blog/dev-tools-thumb.svg"
 tags: ["company", "engineering"]

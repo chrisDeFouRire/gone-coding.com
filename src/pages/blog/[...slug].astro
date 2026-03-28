@@ -15,7 +15,8 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 
 const slug = post.id.replace(/\.(md|mdx)$/, '');
-const postUrl = `https://gone-coding.com/blog/${slug}`;
+const postUrl = `https://gone-coding.com/blog/${slug}/`;
+
 const ogImage = post.data.heroImage
   ? new URL(post.data.heroImage, Astro.site).href
   : new URL('/og-default.svg', Astro.site).href;
@@ -123,7 +124,7 @@ function formatDate(date: Date): string {
 
     <footer class="mt-16 border-t border-border/40 pt-8">
       <a
-        href="/blog"
+        href="/blog/"
         class="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         &larr; Back to blog

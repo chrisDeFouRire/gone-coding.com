@@ -8,6 +8,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://gone-coding.com',
+  trailingSlash: 'always',
   integrations: [react(), sitemap()],
 
   vite: {

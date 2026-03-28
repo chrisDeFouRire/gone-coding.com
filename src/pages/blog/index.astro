@@ -13,7 +13,7 @@ const jsonLd = {
   "@type": "Blog",
   "name": "Gone Coding Blog",
   "url": "https://gone-coding.com/blog",
-  "description": "Thoughts on security, developer tools, and building software.",
+  "description": "Thoughts on security, developer tools, SSL/TLS, and building software by the team at Gone Coding Ltd.",
   "publisher": {
     "@type": "Organization",
     "name": "Gone Coding Ltd.",
@@ -24,7 +24,7 @@ const jsonLd = {
     "headline": post.data.title,
     "description": post.data.description,
     "datePublished": post.data.pubDate.toISOString(),
-    "url": `https://gone-coding.com/blog/${post.id.replace(/\.(md|mdx)$/, '')}`,
+    "url": `https://gone-coding.com/blog/${post.id.replace(/\.(md|mdx)$/, '')}/`,
   }))
 };
 
@@ -39,7 +39,7 @@ function formatDate(date: Date): string {
 
 <Layout
   title="Blog"
-  description="Thoughts on security, developer tools, and building software by Gone Coding Ltd."
+  description="Articles on SSL certificate management, TLS security, developer tooling, and building software by the Gone Coding Ltd. Read about SSLBoard, developer tools philosophy, and the latest TLS landscape reports."
 >
   <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
@@ -51,7 +51,7 @@ function formatDate(date: Date): string {
       {posts.map((post) => {
         const slug = post.id.replace(/\.(md|mdx)$/, '');
         return (
-          <a href={`/blog/${slug}`} class="group" aria-label={post.data.title}>
+          <a href={`/blog/${slug}/`} class="group" aria-label={post.data.title}>
             <Card className="h-full transition-shadow group-hover:shadow-md">
               {post.data.heroImage ? (
                 <img
