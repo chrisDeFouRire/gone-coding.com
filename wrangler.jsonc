@@ -1,0 +1,8 @@
+{
+  "name": "gone-coding",
+  "compatibility_date": "2026-03-28",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}

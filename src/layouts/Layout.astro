@@ -1,0 +1,118 @@
+---
+import '../styles/global.css';
+import ThemeToggle from '../components/ThemeToggle';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  article?: boolean;
+  publishDate?: Date;
+  modifiedDate?: Date;
+}
+
+const {
+  title = 'Gone Coding',
+  description = 'Gone Coding Ltd. — Software engineering company based in Hong Kong, building developer tools and web infrastructure.',
+  canonicalUrl = new URL(Astro.url.pathname, Astro.site).href,
+  ogImage = new URL('/og-default.svg', Astro.site).href,
+  article = false,
+  publishDate,
+  modifiedDate,
+} = Astro.props;
+
+const year = new Date().getFullYear();
+const siteName = 'Gone Coding';
+const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {publishDate && <meta property="article:published_time" content={publishDate.toISOString()} />}
+    {modifiedDate && <meta property="article:modified_time" content={modifiedDate.toISOString()} />}
+
+    <script is:inline>
+      (function () {
+        var t = localStorage.getItem("theme");
+        var d = t === "dark" || ((!t || t === "auto") && matchMedia("(prefers-color-scheme:dark)").matches);
+        document.documentElement.classList.toggle("dark", d);
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col bg-background text-foreground antialiased">
+    <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
+      <div class="mx-auto flex h-14 max-w-4xl items-center justify-between px-6">
+        <a href="/" class="flex items-center gap-2.5 font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80" aria-label="Gone Coding — Home">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-foreground text-background text-xs font-bold" aria-hidden="true">
+            GC
+          </span>
+          <span>Gone Coding</span>
+        </a>
+        <nav class="flex items-center gap-1" aria-label="Main navigation">
+          <a href="/" class="inline-flex h-9 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
+            Home
+          </a>
+          <a href="/blog" class="inline-flex h-9 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
+            Blog
+          </a>
+          <ThemeToggle client:load />
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-border/40">
+      <div class="mx-auto max-w-4xl px-6 py-12">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center gap-2.5 font-semibold tracking-tight">
+              <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-foreground text-background text-[10px] font-bold" aria-hidden="true">
+                GC
+              </span>
+              <span>Gone Coding</span>
+            </div>
+            <address class="text-sm leading-relaxed text-muted-foreground max-w-xs not-italic">
+              <p>Gone Coding Ltd.</p>
+              <p>Unit 1603, The L. Plaza, 367-375 Queen's Road Central, Sheung Wan, Hong Kong.</p>
+            </address>
+          </div>
+          <nav class="flex gap-4 text-sm text-muted-foreground" aria-label="Footer navigation">
+            <a href="/" class="transition-colors hover:text-foreground">Home</a>
+            <a href="/blog" class="transition-colors hover:text-foreground">Blog</a>
+          </nav>
+        </div>
+        <div class="mt-8 border-t border-border/40 pt-6">
+          <p class="text-xs text-muted-foreground">&copy; {year} Gone Coding Ltd. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
