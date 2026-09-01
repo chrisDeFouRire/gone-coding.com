@@ -24,7 +24,7 @@ const {
 
 const year = new Date().getFullYear();
 const siteName = 'Gone Coding';
-const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
 ---
 
 <!doctype html>
@@ -71,7 +71,7 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
   <body class="min-h-screen flex flex-col bg-background text-foreground antialiased">
     <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
       <div class="mx-auto flex h-14 max-w-4xl items-center justify-between px-6">
-        <a href="/" class="flex items-center gap-2.5 font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80" aria-label="Gone Coding — Home">
+        <a href="/" class="flex items-center gap-2.5 font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80" aria-label="Gone Coding, Home">
           <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-foreground text-background text-xs font-bold" aria-hidden="true">
             GC
           </span>
@@ -106,6 +106,9 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
             <address class="text-sm leading-relaxed text-muted-foreground max-w-xs not-italic">
               <p>Gone Coding Ltd.</p>
               <p>Unit 1603, The L. Plaza, 367-375 Queen's Road Central, Sheung Wan, Hong Kong.</p>
+              <p>
+                <a href="mailto:chris@gone-coding.com" class="transition-colors hover:text-foreground">chris@gone-coding.com</a>
+              </p>
             </address>
           </div>
           <nav class="flex gap-4 text-sm text-muted-foreground" aria-label="Footer navigation">

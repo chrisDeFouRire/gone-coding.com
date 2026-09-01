@@ -8,14 +8,14 @@ const products = [
     name: 'SSLBoard',
     url: 'https://sslboard.com',
     hostname: 'sslboard.com',
-    description: 'Certificate Lifecycle Management. Discover, monitor, and manage all your SSL/TLS certificates.',
+    description: 'Agentless TLS auditing. Type a domain and get a full certificate and security report in minutes. No agents, no account.',
     accentClass: 'border-t-amber-500',
   },
   {
     name: 'QCReady',
     url: 'https://qcready.com',
     hostname: 'qcready.com',
-    description: 'Quality control automation for modern development teams.',
+    description: 'Ready for post-quantum TLS? Check in seconds whether your servers support quantum-safe key exchange.',
     accentClass: 'border-t-green-500',
   },
   {
@@ -26,24 +26,24 @@ const products = [
     accentClass: 'border-t-blue-500',
   },
   {
-    name: 'EzS3',
-    url: 'https://ezs3.net',
-    hostname: 'ezs3.net',
-    description: 'Simple S3 bucket management. Browse, manage, and organize your cloud storage.',
+    name: 'quickS3',
+    url: 'https://quicks3.com',
+    hostname: 'quicks3.com',
+    description: 'Easy S3 access for teams. Browse, upload, and download files without sharing admin credentials.',
     accentClass: 'border-t-purple-500',
   },
   {
-    name: 'Chris Hartwig',
-    url: 'https://chris-hartwig.com',
-    hostname: 'chris-hartwig.com',
-    description: 'Personal website and blog.',
+    name: 'HappySouls',
+    url: 'https://happysouls.app',
+    hostname: 'happysouls.app',
+    description: 'Preserve your life story. AI-guided interviews that turn memories into written chapters, recordings, and a printable book.',
     accentClass: 'border-t-rose-500',
   },
   {
     name: 'TwinBrix',
     url: 'https://twinbrix.app',
     hostname: 'twinbrix.app',
-    description: 'A new way to work with building blocks.',
+    description: 'Online multiplayer breakout. Race a friend or a random opponent to clear your bricks first.',
     accentClass: 'border-t-teal-500',
   },
 ];
@@ -62,11 +62,17 @@ const jsonLd = {
     "addressRegion": "Hong Kong",
     "addressCountry": "HK"
   },
+  "email": "chris@gone-coding.com",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "chris@gone-coding.com"
+  },
   "sameAs": products.map(p => p.url)
 };
 ---
 
-<Layout title="We build software" description="Gone Coding Ltd. builds developer tools and web infrastructure from Hong Kong. Products include SSLBoard, QCReady, SSLCalendar, EzS3, and TwinBrix.">
+<Layout title="We build software" description="Gone Coding Ltd. builds developer tools and web infrastructure from Hong Kong. Products include SSLBoard, QCReady, SSLCalendar, quickS3, HappySouls, and TwinBrix.">
   <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <section class="mx-auto max-w-5xl px-6 pt-32 pb-20 text-center">
     <h1 class="text-5xl font-semibold tracking-normal sm:text-6xl lg:text-7xl">
@@ -86,7 +92,7 @@ const jsonLd = {
           target="_blank"
           rel="noopener noreferrer"
           class="group block"
-          aria-label={`${product.name} — ${product.description}`}
+          aria-label={`${product.name}: ${product.description}`}
         >
           <Card className={`border-t-2 ${product.accentClass} h-full transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg`}>
             <CardHeader>
@@ -115,6 +121,9 @@ const jsonLd = {
         Gone Coding Ltd. is a software engineering company based in Hong Kong.
         We focus on developer tools and web infrastructure, building products
         that help teams ship better software.
+      </p>
+      <p class="mt-4 text-muted-foreground">
+        Get in touch: <a href="mailto:chris@gone-coding.com" class="font-medium text-foreground underline underline-offset-4 transition-opacity hover:opacity-70">chris@gone-coding.com</a>
       </p>
       <div class="mt-6 flex flex-wrap gap-2">
         <Badge variant="secondary">Hong Kong</Badge>

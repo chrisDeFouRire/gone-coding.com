@@ -1,6 +1,6 @@
 # gone-coding.com
 
-Portfolio website for [Gone Coding Ltd.](https://gone-coding.com) — a software engineering company based in Hong Kong.
+Portfolio website for [Gone Coding Ltd.](https://gone-coding.com), a software engineering company based in Hong Kong.
 
 Built with [Astro](https://astro.build), React, TailwindCSS v4, and shadcn/ui. Deployed to Cloudflare Workers.
 
