@@ -161,7 +161,7 @@
 .caret {
   display: inline-block;
   width: 0.16em;
-  height: 0.72em;
+  height: 0.82em;
   margin-left: 0.08em;
   background: var(--primary);
   animation: caret-blink 1.1s steps(2, start) infinite;
