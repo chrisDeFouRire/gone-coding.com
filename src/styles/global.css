@@ -189,7 +189,7 @@
   to { transform: translateX(-50%); }
 }
 
-/* Product "sign" dot — glows on hover like a neon tube powering up */
+/* Product "sign" dot: glows on hover like a neon tube powering up */
 .sign-dot {
   width: 0.625rem;
   height: 0.625rem;
