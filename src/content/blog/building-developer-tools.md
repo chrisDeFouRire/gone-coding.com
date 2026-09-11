@@ -1,15 +1,35 @@
 ---
-title: "Why We Build Developer Tools"
-description: "We build tools we would want to use ourselves: clean interfaces, sensible defaults, and software that solves one problem completely rather than five problems adequately."
+title: "Why we build developer tools"
+description: "A note on how we decide what to build: one problem, no agents, pricing that lets you try before you talk to anyone."
 pubDate: 2025-03-01
-heroImage: "/blog/dev-tools-thumb.svg"
+heroImage: "/blog/dev-tools-launch.jpg"
 tags: ["company", "engineering"]
 ---
 
-There's no shortage of developer tools on the market. Open a browser tab and you'll find a dozen SaaS products competing for the same workload, each promising to save you hours with AI-powered workflows and dashboards you never asked for. We think the best tools are the ones that get out of your way.
+Before we built products, we spent years doing client work: infrastructure, security reviews, the occasional rescue mission for a system nobody wanted to own. The pattern we kept seeing was never a lack of tools. It was tools that demanded more than the problem was worth: platforms that need an agent on every host, dashboards that need a kickoff call, free tiers that exist to schedule a demo.
 
-At Gone Coding, we build things we'd want to use ourselves. That means clean interfaces, sensible defaults, and documentation that actually answers your questions. It means optimising for the common case instead of trying to handle every edge case with a toggle in a settings panel. And it means shipping something that works on day one rather than spending months on a feature roadmap that no one asked for.
+Gone Coding exists because we kept thinking the same thing at the end of those projects: this should have been a website.
 
-This philosophy comes directly from our consulting work. We've spent years helping teams ship software, and the pattern is always the same: the tools people love are the ones that solve one problem well. Not five problems adequately. Not one problem with seventeen configuration options. One problem, solved completely.
+A website you visit, that does the thing, that shows you the answer. The way `dig` is a website's grumpy ancestor: input, output, done. Most problems in infrastructure do not need a platform. They need one honest answer, presented before you lose interest.
 
-That's the standard we hold ourselves to with every product we build. SSLBoard, our first product, is designed to do one thing: give you visibility and control over your certificate infrastructure. Nothing more, nothing less. We'd rather build a narrow tool that works reliably than a broad platform that breaks in surprising ways.
+## The test we apply
+
+When an idea comes up, it has to pass three checks, and the third one is where most ideas die:
+
+**One problem.** If we cannot describe the product in a sentence that a busy engineer would understand, it is two products wearing a trench coat. SSLBoard tells you the state of your certificates. That is the sentence. There is no second sentence.
+
+**No deployment.** If using the product requires installing something on your infrastructure, we have converted a question into a project. Projects need approvals and maintenance windows. Questions deserve answers. We make exceptions only when the answer physically cannot be obtained from outside.
+
+**Try before you talk.** If a stranger cannot get value from the product in the first five minutes without creating an account, the product is not ready. Pricing pages and sales calls come after the answer, never before it.
+
+## What this costs
+
+Narrow tools leave things out, and it is fair to ask what. The honest list: SSLBoard will not manage your PKI, rotate your keys, or integrate with your provisioning system. quickS3 will not replace your data lake tooling. We would rather be the tool you open when the question appears than the platform you log into because someone paid for seats.
+
+There is a commercial argument for this too, though it was not the original motivation. Small tools with clear jobs sell themselves, or they do not sell, and either way we find out quickly. Nobody ever churning through six months of enterprise sales cycle has ever learned whether their product was good.
+
+## The current roster
+
+Today the company runs six products: three certificate and TLS tools (SSLBoard, QCReady, SSLCalendar), an S3 file browser for teams (quickS3), an AI interviewer that turns a relative's memories into a book (HappySouls), and a multiplayer breakout game (TwinBrix), because if you only build serious things you get weird in the wrong way.
+
+The roster is diverse but every product passed the same three checks. If future products hold to them too, we will consider the philosophy a success. And if you find one of our tools solving a problem you thought needed a platform, we would love to hear about it: chris@gone-coding.com.

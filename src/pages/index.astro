@@ -1,52 +1,64 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { getCollection } from 'astro:content';
 
 const products = [
   {
     name: 'SSLBoard',
     url: 'https://sslboard.com',
     hostname: 'sslboard.com',
+    color: '#f59e0b',
     description: 'Agentless TLS auditing. Type a domain and get a full certificate and security report in minutes. No agents, no account.',
-    accentClass: 'border-t-amber-500',
   },
   {
     name: 'QCReady',
     url: 'https://qcready.com',
     hostname: 'qcready.com',
+    color: '#22c55e',
     description: 'Ready for post-quantum TLS? Check in seconds whether your servers support quantum-safe key exchange.',
-    accentClass: 'border-t-green-500',
   },
   {
     name: 'SSLCalendar',
     url: 'https://sslcalendar.com',
     hostname: 'sslcalendar.com',
+    color: '#3b82f6',
     description: 'Never miss a certificate expiration again. A clear calendar view of your SSL landscape.',
-    accentClass: 'border-t-blue-500',
   },
   {
     name: 'quickS3',
     url: 'https://quicks3.com',
     hostname: 'quicks3.com',
+    color: '#a855f7',
     description: 'Easy S3 access for teams. Browse, upload, and download files without sharing admin credentials.',
-    accentClass: 'border-t-purple-500',
   },
   {
     name: 'HappySouls',
     url: 'https://happysouls.app',
     hostname: 'happysouls.app',
+    color: '#f43f5e',
     description: 'Preserve your life story. AI-guided interviews that turn memories into written chapters, recordings, and a printable book.',
-    accentClass: 'border-t-rose-500',
   },
   {
     name: 'TwinBrix',
     url: 'https://twinbrix.app',
     hostname: 'twinbrix.app',
+    color: '#14b8a6',
     description: 'Online multiplayer breakout. Race a friend or a random opponent to clear your bricks first.',
-    accentClass: 'border-t-teal-500',
   },
 ];
+
+const tickerItems = [
+  { hostname: 'sslboard.com', status: 'ONLINE' },
+  { hostname: 'qcready.com', status: 'ONLINE' },
+  { hostname: 'sslcalendar.com', status: 'WATCHING' },
+  { hostname: 'quicks3.com', status: 'ONLINE' },
+  { hostname: 'happysouls.app', status: 'LISTENING' },
+  { hostname: 'twinbrix.app', status: 'PLAYABLE' },
+];
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -70,66 +82,148 @@ const jsonLd = {
   },
   "sameAs": products.map(p => p.url)
 };
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
 ---
 
 <Layout title="We build software" description="Gone Coding Ltd. builds developer tools and web infrastructure from Hong Kong. Products include SSLBoard, QCReady, SSLCalendar, quickS3, HappySouls, and TwinBrix.">
   <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <section class="mx-auto max-w-5xl px-6 pt-32 pb-20 text-center">
-    <h1 class="text-5xl font-semibold tracking-normal sm:text-6xl lg:text-7xl">
-      We build software.
+
+  <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 sm:pt-28">
+    <p class="flex items-center gap-2.5 font-mono text-[13px] text-muted-foreground">
+      <span class="inline-block size-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+      Hong Kong <span id="hk-clock" class="text-foreground">UTC+8</span>
+    </p>
+    <h1 class="mt-8 font-display uppercase leading-[0.95] tracking-wide text-[clamp(3.5rem,11vw,8.5rem)]">
+      We build<br />
+      <span class="neon">software.</span><span class="caret" aria-hidden="true"></span>
     </h1>
-    <p class="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-      Gone Coding Ltd. is a software engineering company based in Hong Kong, building tools for the modern web.
+    <p class="mt-10 max-w-xl text-lg leading-relaxed text-muted-foreground">
+      Gone Coding Ltd. is a software engineering company in Hong Kong.
+      We ship small, sharp tools for the modern web — most of them keep
+      watch over certificates, buckets, and breakouts.
     </p>
   </section>
 
-  <section aria-labelledby="products-heading" class="mx-auto max-w-5xl px-6 pb-24">
-    <h2 id="products-heading" class="sr-only">Products</h2>
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="ticker border-y border-border/60 py-3" aria-hidden="true">
+    <div class="ticker-track font-mono text-[13px]">
+      {[0, 1].map(() => (
+        <div class="flex shrink-0">
+          {tickerItems.map((item) => (
+            <span class="mr-14 flex items-center gap-3">
+              <span class="text-muted-foreground">{item.hostname}</span>
+              <span class="text-primary">{item.status}</span>
+              <span class="ml-11 text-border">◆</span>
+            </span>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <section id="products" aria-labelledby="products-heading" class="mx-auto max-w-6xl scroll-mt-24 px-6 pt-20 pb-24">
+    <div class="flex items-baseline justify-between gap-6 pb-4">
+      <h2 id="products-heading" class="font-mono text-[13px] text-muted-foreground">Products</h2>
+      <span class="font-mono text-[13px] text-primary">{products.length.toString().padStart(2, '0')}</span>
+    </div>
+    <div class="border-t border-border/60">
       {products.map((product) => (
         <a
           href={product.url}
           target="_blank"
           rel="noopener noreferrer"
-          class="group block"
+          class="row-link group grid gap-2 border-b border-border/60 px-2 py-6 sm:px-4 md:grid-cols-[11rem_1fr] md:gap-8 lg:grid-cols-[13rem_10rem_1fr]"
           aria-label={`${product.name}: ${product.description}`}
         >
-          <Card className={`border-t-2 ${product.accentClass} h-full transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg`}>
-            <CardHeader>
-              <CardTitle className="text-lg font-semibold group-hover:text-foreground/80">
-                {product.name}
-              </CardTitle>
-              <CardDescription className="text-xs">
-                {product.hostname}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p class="text-sm leading-relaxed text-muted-foreground">
-                {product.description}
-              </p>
-            </CardContent>
-          </Card>
+          <span class="flex items-center gap-3">
+            <span class="sign-dot" style={`--dot:${product.color}`}></span>
+            <span class="text-lg font-semibold tracking-tight">{product.name}</span>
+          </span>
+          <span class="hidden self-center font-mono text-[13px] text-muted-foreground md:block">
+            {product.hostname}
+          </span>
+          <span class="text-sm leading-relaxed text-muted-foreground md:col-start-2 lg:col-start-3">
+            {product.description}
+          </span>
         </a>
       ))}
     </div>
   </section>
 
-  <section aria-labelledby="about-heading" class="mx-auto max-w-5xl px-6 pb-24">
-    <div class="rounded-xl border bg-card p-8">
-      <h2 id="about-heading" class="text-2xl font-semibold tracking-normal">About</h2>
-      <p class="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-        Gone Coding Ltd. is a software engineering company based in Hong Kong.
-        We focus on developer tools and web infrastructure, building products
-        that help teams ship better software.
-      </p>
-      <p class="mt-4 text-muted-foreground">
-        Get in touch: <a href="mailto:chris@gone-coding.com" class="font-medium text-foreground underline underline-offset-4 transition-opacity hover:opacity-70">chris@gone-coding.com</a>
-      </p>
-      <div class="mt-6 flex flex-wrap gap-2">
-        <Badge variant="secondary">Hong Kong</Badge>
-        <Badge variant="secondary">Developer Tools</Badge>
-        <Badge variant="secondary">Web Infrastructure</Badge>
+  <section id="writing" aria-labelledby="writing-heading" class="mx-auto max-w-6xl scroll-mt-24 px-6 pb-24">
+    <div class="flex items-baseline justify-between gap-6 pb-4">
+      <h2 id="writing-heading" class="font-mono text-[13px] text-muted-foreground">Writing</h2>
+      <a href="/blog/" class="font-mono text-[13px] text-primary hover:underline underline-offset-4">All posts</a>
+    </div>
+    <div class="border-t border-border/60">
+      {posts.map((post) => {
+        const slug = post.id.replace(/\.(md|mdx)$/, '');
+        return (
+          <a href={`/blog/${slug}/`} class="row-link group grid gap-2 border-b border-border/60 px-2 py-6 sm:px-4 md:grid-cols-[10rem_1fr] md:gap-8">
+            <time datetime={post.data.pubDate.toISOString()} class="self-center font-mono text-[13px] text-muted-foreground">
+              {formatDate(post.data.pubDate)}
+            </time>
+            <span>
+              <span class="block text-lg font-semibold tracking-tight group-hover:text-primary transition-colors">
+                {post.data.title}
+              </span>
+              <span class="mt-1.5 block text-sm leading-relaxed text-muted-foreground line-clamp-2">
+                {post.data.description}
+              </span>
+            </span>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-heading" class="mx-auto max-w-6xl scroll-mt-24 px-6 pb-28">
+    <div class="flex items-baseline justify-between gap-6 pb-4">
+      <h2 id="about-heading" class="font-mono text-[13px] text-muted-foreground">About</h2>
+      <span class="font-mono text-[13px] text-primary">HK</span>
+    </div>
+    <div class="grid gap-10 border-t border-border/60 pt-10 md:grid-cols-2">
+      <div>
+        <p class="max-w-md leading-relaxed text-muted-foreground">
+          We are a small company that prefers shipping to meeting. Our focus is
+          developer tools and web infrastructure — products that help teams ship
+          better software, run quietly, and stay out of the way.
+        </p>
+        <a href="mailto:chris@gone-coding.com" class="mt-6 inline-block font-mono text-[15px] text-foreground underline decoration-primary/60 underline-offset-4 transition-colors hover:decoration-primary">
+          chris@gone-coding.com
+        </a>
+      </div>
+      <div class="font-mono text-[13px] leading-loose text-muted-foreground md:justify-self-end">
+        <p class="text-foreground">Gone Coding Ltd.</p>
+        <p>Unit 1603, The L. Plaza</p>
+        <p>367–375 Queen's Road Central</p>
+        <p>Sheung Wan, Hong Kong</p>
       </div>
     </div>
   </section>
 </Layout>
+
+<script is:inline>
+  (function () {
+    var el = document.getElementById('hk-clock');
+    if (!el) return;
+    var fmt = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Hong_Kong',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    });
+    function tick() {
+      el.textContent = fmt.format(new Date()) + ' HKT';
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>

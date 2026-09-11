@@ -1,8 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -43,50 +41,36 @@ function formatDate(date: Date): string {
 >
   <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-  <section class="mx-auto max-w-4xl px-6 py-16">
-    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Blog</h1>
-    <p class="mt-3 text-muted-foreground">Thoughts on security, developer tools, and building software.</p>
+  <section class="mx-auto max-w-4xl px-6 pt-20 pb-16">
+    <h1 class="font-display uppercase leading-[0.95] tracking-wide text-[clamp(3rem,8vw,5.5rem)]">
+      Writing<span class="neon">.</span>
+    </h1>
+    <p class="mt-6 max-w-lg leading-relaxed text-muted-foreground">
+      Notes from the workshop: certificates, TLS, developer tooling, and what
+      we learn shipping our own products.
+    </p>
+  </section>
 
-    <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+  <section class="mx-auto max-w-4xl px-6 pb-24">
+    <div class="border-t border-border/60">
       {posts.map((post) => {
         const slug = post.id.replace(/\.(md|mdx)$/, '');
         return (
-          <a href={`/blog/${slug}/`} class="group" aria-label={post.data.title}>
-            <Card className="h-full transition-shadow group-hover:shadow-md">
-              {post.data.heroImage ? (
-                <img
-                  src={post.data.heroImage}
-                  alt={`Thumbnail for ${post.data.title}`}
-                  class="aspect-video w-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : (
-                <div class="aspect-video w-full bg-gradient-to-br from-primary/20 to-primary/5" role="presentation" />
-              )}
-              <CardContent className="space-y-3">
-                <div class="space-y-1.5">
-                  <h2 class="text-base font-semibold leading-snug tracking-tight group-hover:underline">
-                    {post.data.title}
-                  </h2>
-                  <time datetime={post.data.pubDate.toISOString()} class="text-xs text-muted-foreground">
-                    {formatDate(post.data.pubDate)}
-                  </time>
-                </div>
-                <p class="text-sm leading-relaxed text-muted-foreground line-clamp-3">
-                  {post.data.description}
-                </p>
-                {post.data.tags.length > 0 && (
-                  <div class="flex flex-wrap gap-1.5 pt-1">
-                    {post.data.tags.map((tag) => (
-                      <Badge variant="secondary" className="text-[11px]">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+          <a href={`/blog/${slug}/`} class="row-link group block border-b border-border/60 px-2 py-8 sm:px-4" aria-label={post.data.title}>
+            <time datetime={post.data.pubDate.toISOString()} class="font-mono text-[13px] text-muted-foreground">
+              {formatDate(post.data.pubDate)}
+            </time>
+            <h2 class="mt-2 text-xl font-semibold tracking-tight group-hover:text-primary transition-colors sm:text-2xl">
+              {post.data.title}
+            </h2>
+            <p class="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              {post.data.description}
+            </p>
+            {post.data.tags.length > 0 && (
+              <p class="mt-3 font-mono text-xs text-muted-foreground/80">
+                {post.data.tags.join(', ')}
+              </p>
+            )}
           </a>
         );
       })}

@@ -1,6 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0a0a0a"/>
-  <text x="600" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="#fafafa" text-anchor="middle">Gone Coding</text>
-  <text x="600" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#a3a3a3" text-anchor="middle">We build software.</text>
-  <rect x="540" y="380" width="120" height="3" rx="1.5" fill="#525252"/>
+  <rect width="1200" height="630" fill="#141a28"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#f5b043"/>
+  <text x="90" y="200" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="26" fill="#8b93a5">HONG KONG 22.3193° N, 114.1694° E</text>
+  <text x="84" y="360" font-family="'Arial Narrow', Impact, sans-serif" font-size="150" font-weight="700" fill="#f5b043" letter-spacing="4">WE BUILD</text>
+  <text x="84" y="500" font-family="'Arial Narrow', Impact, sans-serif" font-size="150" font-weight="700" fill="#f5f2ea" letter-spacing="4">SOFTWARE.</text>
+  <text x="90" y="570" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="24" fill="#8b93a5">gone-coding.com</text>
 </svg>

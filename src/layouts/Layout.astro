@@ -39,9 +39,6 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <meta property="og:type" content={article ? 'article' : 'website'} />
     <meta property="og:url" content={canonicalUrl} />
@@ -69,19 +66,23 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
     <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="48AKMjWS0KdYxMMXoUWzMw" async></script>
   </head>
   <body class="min-h-screen flex flex-col bg-background text-foreground antialiased">
-    <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
-      <div class="mx-auto flex h-14 max-w-4xl items-center justify-between px-6">
-        <a href="/" class="flex items-center gap-2.5 font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80" aria-label="Gone Coding, Home">
-          <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-foreground text-background text-xs font-bold" aria-hidden="true">
-            GC
-          </span>
-          <span>Gone Coding</span>
+    <header class="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-lg">
+      <div class="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-6">
+        <a href="/" class="flex items-center gap-2.5 transition-opacity hover:opacity-80" aria-label="Gone Coding, Home">
+          <svg viewBox="0 0 32 32" fill="none" class="size-6 text-primary" aria-hidden="true">
+            <path d="M19 6h-4a8 8 0 0 0 0 16h4" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <path d="M22 26h-2a8 8 0 0 1 0-16h2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <span class="font-mono text-[13px] tracking-tight text-foreground">gone-coding.com</span>
         </a>
         <nav class="flex items-center gap-1" aria-label="Main navigation">
-          <a href="/" class="inline-flex h-9 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
-            Home
+          <a href="/#products" class="hidden h-9 items-center rounded-md px-3 font-mono text-[13px] text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground sm:inline-flex">
+            Products
           </a>
-          <a href="/blog/" class="inline-flex h-9 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
+          <a href="/#writing" class="hidden h-9 items-center rounded-md px-3 font-mono text-[13px] text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground sm:inline-flex">
+            Writing
+          </a>
+          <a href="/blog/" class="inline-flex h-9 items-center rounded-md px-3 font-mono text-[13px] text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
             Blog
           </a>
           <ThemeToggle client:load />
@@ -93,31 +94,39 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
       <slot />
     </main>
 
-    <footer class="border-t border-border/40">
-      <div class="mx-auto max-w-4xl px-6 py-12">
-        <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+    <footer class="border-t border-border/60">
+      <div class="mx-auto max-w-6xl px-6 py-14">
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           <div class="space-y-3">
-            <div class="flex items-center gap-2.5 font-semibold tracking-tight">
-              <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-foreground text-background text-[10px] font-bold" aria-hidden="true">
-                GC
-              </span>
-              <span>Gone Coding</span>
+            <div class="flex items-center gap-2.5">
+              <svg viewBox="0 0 32 32" fill="none" class="size-5 text-primary" aria-hidden="true">
+                <path d="M19 6h-4a8 8 0 0 0 0 16h4" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                <path d="M22 26h-2a8 8 0 0 1 0-16h2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+              <span class="font-semibold tracking-tight">Gone Coding Ltd.</span>
             </div>
-            <address class="text-sm leading-relaxed text-muted-foreground max-w-xs not-italic">
-              <p>Gone Coding Ltd.</p>
-              <p>Unit 1603, The L. Plaza, 367-375 Queen's Road Central, Sheung Wan, Hong Kong.</p>
-              <p>
-                <a href="mailto:chris@gone-coding.com" class="transition-colors hover:text-foreground">chris@gone-coding.com</a>
-              </p>
+            <p class="max-w-xs text-sm leading-relaxed text-muted-foreground">
+              Ships software from Hong Kong. Mostly tools that keep an eye on the web.
+            </p>
+          </div>
+          <div>
+            <address class="font-mono text-[13px] not-italic leading-relaxed text-muted-foreground">
+              Unit 1603, The L. Plaza<br />
+              367–375 Queen's Road Central<br />
+              Sheung Wan, Hong Kong<br />
+              <a href="mailto:chris@gone-coding.com" class="mt-2 inline-block text-foreground underline decoration-primary/60 underline-offset-4 transition-colors hover:decoration-primary">
+                chris@gone-coding.com
+              </a>
             </address>
           </div>
-          <nav class="flex gap-4 text-sm text-muted-foreground" aria-label="Footer navigation">
-            <a href="/" class="transition-colors hover:text-foreground">Home</a>
+          <nav class="flex flex-col gap-2 font-mono text-[13px] text-muted-foreground sm:items-start lg:items-end" aria-label="Footer navigation">
+            <a href="/#products" class="transition-colors hover:text-foreground">Products</a>
             <a href="/blog/" class="transition-colors hover:text-foreground">Blog</a>
           </nav>
         </div>
-        <div class="mt-8 border-t border-border/40 pt-6">
-          <p class="text-xs text-muted-foreground">&copy; {year} Gone Coding Ltd. All rights reserved.</p>
+        <div class="mt-12 flex flex-col gap-2 border-t border-border/60 pt-6 font-mono text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {year} Gone Coding Ltd.</p>
+          <p aria-hidden="true">22.3193° N, 114.1694° E</p>
         </div>
       </div>
     </footer>
