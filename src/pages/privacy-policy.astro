@@ -1,0 +1,200 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const lastUpdated = 'September 2026';
+
+// Each product's own policy covers what that product collects and stores.
+const products = [
+  { name: 'SSLBoard', href: 'https://sslboard.com/privacy-policy/', site: 'sslboard.com' },
+  { name: 'quickS3', href: 'https://quicks3.com/privacy/', site: 'quicks3.com' },
+];
+
+const processors = [
+  { name: 'Stripe', purpose: 'payments, subscriptions and invoices' },
+  { name: 'Cloudflare', purpose: 'hosting, storage, and protection against attacks' },
+  { name: 'Postmark', purpose: 'transactional email such as sign-in links and invitations' },
+  { name: 'Google', purpose: 'sign-in with Google, where you choose it' },
+  { name: 'Ahrefs Analytics', purpose: 'aggregate visit counts on our marketing sites' },
+];
+---
+
+<Layout
+  title="Privacy Policy"
+  description="How Gone Coding Ltd. handles personal data across its products, including SSLBoard and quickS3."
+>
+  <article class="mx-auto max-w-3xl px-6 py-16">
+    <header class="space-y-4">
+      <p class="font-mono text-[13px] text-muted-foreground">Last updated: {lastUpdated}</p>
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Privacy Policy</h1>
+      <p class="text-lg leading-relaxed text-muted-foreground">
+        This policy covers personal data handled by Gone Coding Ltd. across its products and
+        websites. Each product also has its own policy describing what that product stores.
+      </p>
+    </header>
+
+    <div class="mt-12 space-y-10 leading-relaxed">
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">1. Who is responsible</h2>
+        <p class="text-muted-foreground">
+          Gone Coding Ltd., Unit 1603, The L. Plaza, 367-375 Queen's Road Central, Sheung Wan, Hong
+          Kong, is the data controller for the personal data described here. Contact us at
+          <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href="mailto:contact@gone-coding.com">contact@gone-coding.com</a>.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">2. Product policies</h2>
+        <p class="text-muted-foreground">
+          Our products differ in what they access, so each has its own policy. Read it alongside
+          this one:
+        </p>
+        <ul class="list-disc space-y-1 pl-6 text-muted-foreground">
+          {products.map((product) => (
+            <li>
+              <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href={product.href}>
+                {product.name} privacy policy
+              </a>{' '}
+              ({product.site})
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">3. What we collect</h2>
+        <ul class="list-disc space-y-1 pl-6 text-muted-foreground">
+          <li>
+            <span class="text-foreground">Account data.</span> Your name, email address, and the
+            organisation you belong to, plus sign-in records such as when you last signed in.
+          </li>
+          <li>
+            <span class="text-foreground">Billing data.</span> Company name, billing address, tax
+            ID, and a record of subscriptions and invoices. Card details go directly to Stripe. We
+            never see or store a full card number.
+          </li>
+          <li>
+            <span class="text-foreground">Product data.</span> What you set up and do inside a
+            product, such as the domains you monitor or the storage connections, permissions and
+            activity records a product keeps. The product's own policy sets out the detail and how
+            long records are kept.
+          </li>
+          <li>
+            <span class="text-foreground">Technical data.</span> Server logs, including IP address,
+            browser type and timestamps, which we use to run and secure the service.
+          </li>
+          <li>
+            <span class="text-foreground">Support messages.</span> What you send us by email.
+          </li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">4. Why we use it</h2>
+        <ul class="list-disc space-y-1 pl-6 text-muted-foreground">
+          <li>to provide the product you signed up for, which is the performance of our contract with you</li>
+          <li>to take payment and meet accounting and tax obligations, which is a legal obligation</li>
+          <li>to keep the service secure, prevent abuse, and fix problems, which is our legitimate interest</li>
+          <li>to answer your questions and send service messages such as sign-in links and billing notices</li>
+        </ul>
+        <p class="text-muted-foreground">
+          We do not sell personal data, and we do not use your product data to train AI models.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">5. Who we share it with</h2>
+        <p class="text-muted-foreground">
+          We use a small number of service providers, who process data on our instructions:
+        </p>
+        <ul class="list-disc space-y-1 pl-6 text-muted-foreground">
+          {processors.map((processor) => (
+            <li>
+              <span class="text-foreground">{processor.name}</span> for {processor.purpose}
+            </li>
+          ))}
+        </ul>
+        <p class="text-muted-foreground">
+          We may also share data where the law requires it, or to establish or defend legal claims.
+          If a product is ever sold or transferred, we will tell you before your data moves.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">6. Where data is held</h2>
+        <p class="text-muted-foreground">
+          We are based in Hong Kong, and our providers operate in several countries, so your data
+          may be processed outside the place where you are. Where required, we rely on the
+          safeguards our providers offer, such as standard contractual clauses. Some products let
+          you choose a region for your data; where they do, their own policy explains it.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">7. How long we keep it</h2>
+        <p class="text-muted-foreground">
+          We keep account and product data while your account is active, and delete or anonymise it
+          within a reasonable period after you close it, except where we must keep records longer,
+          such as invoices for tax purposes. Individual products apply shorter retention to some
+          records, such as activity logs, and say so in their own policies.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">8. Your rights</h2>
+        <p class="text-muted-foreground">
+          Depending on where you live, you may have the right to access your personal data, correct
+          it, delete it, object to or restrict how we use it, and receive a copy in a portable
+          form. Write to
+          <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href="mailto:contact@gone-coding.com"> contact@gone-coding.com</a>
+          and we will answer within the time the law allows. You may also complain to your local
+          data protection authority.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">9. Cookies and analytics</h2>
+        <p class="text-muted-foreground">
+          Our applications use cookies that are needed to keep you signed in. On our marketing
+          sites we use privacy-friendly analytics that count visits without tracking individuals
+          across the web. We do not run advertising trackers.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">10. Security</h2>
+        <p class="text-muted-foreground">
+          We protect data in transit and at rest, encrypt credentials you entrust to a product, and
+          limit access to the few people who need it. No system is perfectly secure, but we will
+          tell you without undue delay if a breach affects your personal data.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">11. Children</h2>
+        <p class="text-muted-foreground">
+          Our products are for business use and are not directed at children. We do not knowingly
+          collect personal data from anyone under 16.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">12. Changes</h2>
+        <p class="text-muted-foreground">
+          We may update this policy. If a change materially affects you, we will tell you by email
+          or in the product before it takes effect.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">13. Contact</h2>
+        <p class="text-muted-foreground">
+          Privacy questions: <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href="mailto:contact@gone-coding.com">contact@gone-coding.com</a>.
+          For a specific product, you can also write to
+          <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href="mailto:contact@sslboard.com">contact@sslboard.com</a>
+          or
+          <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href="mailto:contact@quicks3.com">contact@quicks3.com</a>.
+        </p>
+      </section>
+    </div>
+  </article>
+</Layout>

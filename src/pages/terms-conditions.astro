@@ -1,0 +1,238 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const lastUpdated = 'September 2026';
+
+// Products that customers can pay for. Each has its own terms, which sit on
+// top of these and win where they differ.
+const products = [
+  { name: 'SSLBoard', href: 'https://sslboard.com/terms-conditions/', site: 'sslboard.com' },
+  { name: 'quickS3', href: 'https://quicks3.com/terms/', site: 'quicks3.com' },
+];
+---
+
+<Layout
+  title="Terms and Conditions"
+  description="The terms that apply to every Gone Coding Ltd. product, including SSLBoard and quickS3."
+>
+  <article class="mx-auto max-w-3xl px-6 py-16">
+    <header class="space-y-4">
+      <p class="font-mono text-[13px] text-muted-foreground">Last updated: {lastUpdated}</p>
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Terms and Conditions</h1>
+      <p class="text-lg leading-relaxed text-muted-foreground">
+        These terms apply to every product and website operated by Gone Coding Ltd. Each paid
+        product also has its own terms, which cover how that product works.
+      </p>
+    </header>
+
+    <div class="mt-12 space-y-10 leading-relaxed">
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">1. Who we are</h2>
+        <p class="text-muted-foreground">
+          Gone Coding Ltd. is a company registered in Hong Kong, at Unit 1603, The L. Plaza,
+          367-375 Queen's Road Central, Sheung Wan, Hong Kong. In these terms, "we", "us" and
+          "our" mean Gone Coding Ltd., and "you" means the person or organisation using our
+          products.
+        </p>
+        <p class="text-muted-foreground">
+          You can reach us at <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href="mailto:contact@gone-coding.com">contact@gone-coding.com</a>.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">2. These terms and product terms</h2>
+        <p class="text-muted-foreground">
+          Each paid product has its own terms, which form part of your agreement with us:
+        </p>
+        <ul class="list-disc space-y-1 pl-6 text-muted-foreground">
+          {products.map((product) => (
+            <li>
+              <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href={product.href}>
+                {product.name} terms
+              </a>{' '}
+              ({product.site})
+            </li>
+          ))}
+        </ul>
+        <p class="text-muted-foreground">
+          Where a product's own terms say something different from these terms, the product terms
+          apply for that product. By creating an account or paying for a product, you accept these
+          terms and that product's terms.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">3. Business use</h2>
+        <p class="text-muted-foreground">
+          Our paid products are sold to businesses for business use. By subscribing you confirm
+          that you are acting for a business and not as a consumer, and that the person accepting
+          these terms is authorised to do so on that business's behalf.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">4. Your account</h2>
+        <p class="text-muted-foreground">
+          You are responsible for what happens under your account, for keeping sign-in details
+          safe, and for the people you invite into it. Tell us promptly if you believe an account
+          has been used without permission.
+        </p>
+        <p class="text-muted-foreground">
+          You are responsible for any credentials, keys or systems you connect to a product, and
+          for making sure you are allowed to connect them.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">5. Acceptable use</h2>
+        <p class="text-muted-foreground">You agree not to:</p>
+        <ul class="list-disc space-y-1 pl-6 text-muted-foreground">
+          <li>break any law that applies to you or to us, including data protection and export rules</li>
+          <li>use a product against systems, domains or storage you do not own or have permission to use</li>
+          <li>interfere with a product's operation, security or availability, or work around its limits</li>
+          <li>resell or make a product available to others except as its own terms allow</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">6. Fees, billing and taxes</h2>
+        <p class="text-muted-foreground">
+          Prices are shown on each product's website. Subscriptions are billed in advance for the
+          period stated there, and payments are processed by Stripe. We do not see or store your
+          full card details. Each product's terms set out what you are billed for, such as the
+          number of users, and how changes during a period are handled.
+        </p>
+        <p class="text-muted-foreground">
+          Prices exclude any taxes you are responsible for, including taxes due under a reverse
+          charge mechanism. All fees are non-refundable unless the product's terms say otherwise or
+          the law requires otherwise. We may change prices with at least 30 days' notice to
+          existing subscribers.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">7. Trials</h2>
+        <p class="text-muted-foreground">
+          Where a product offers a free trial, its length and what happens when it ends are set out
+          in that product's terms. We may change or withdraw trials for new customers at any time.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">8. Cancellation, suspension and termination</h2>
+        <p class="text-muted-foreground">
+          You can cancel a subscription at any time, and cancellation takes effect as described in
+          the product's terms. If payment fails or a subscription ends, access may be restricted or
+          suspended as those terms describe.
+        </p>
+        <p class="text-muted-foreground">
+          We may suspend or end access if you break these terms, if we are required to by law, or
+          to protect the security of a product or its other users. We aim to give notice where we
+          reasonably can.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">9. Your data and connected systems</h2>
+        <p class="text-muted-foreground">
+          You keep ownership of your data and of anything you store in systems you connect to a
+          product. You grant us the rights needed to operate the product for you, such as
+          processing and transmitting that data. Each product's documentation and privacy policy
+          describe what it accesses and for how long records are kept. Our
+          <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href="/privacy-policy/"> privacy policy</a>
+          explains how we handle personal data.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">10. Our intellectual property</h2>
+        <p class="text-muted-foreground">
+          The products, their software, interfaces and content are owned by us or our licensors.
+          These terms give you a limited, non-exclusive, non-transferable right to use them while
+          your subscription is active. You may not copy, modify, reverse engineer or create
+          derivative works from them except where the law allows it.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">11. Third-party services</h2>
+        <p class="text-muted-foreground">
+          Our products work with services run by other companies, such as storage providers,
+          certificate authorities and payment processors. We are not responsible for those
+          services, their availability, or the fees they charge you directly.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">12. Service levels and changes</h2>
+        <p class="text-muted-foreground">
+          We work to keep our products available and accurate, but we do not promise uninterrupted
+          or error-free service unless a product's terms say so. We may change, add or remove
+          features. Where a change materially reduces what you have paid for, we will tell you.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">13. Disclaimer</h2>
+        <p class="text-muted-foreground">
+          To the extent the law allows, our products are provided "as is" and "as available",
+          without warranties of any kind, whether express or implied, including any implied
+          warranties of merchantability, fitness for a particular purpose, or non-infringement.
+          Reports, scans and other output are informational, and you remain responsible for
+          decisions you make based on them.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">14. Liability</h2>
+        <p class="text-muted-foreground">
+          To the extent the law allows, we are not liable for indirect, incidental, special or
+          consequential losses, or for lost profits, revenue, goodwill or data. Our total liability
+          arising out of or relating to a product is limited to the fees you paid us for that
+          product in the 12 months before the event giving rise to the claim.
+        </p>
+        <p class="text-muted-foreground">
+          Nothing in these terms excludes liability that cannot be excluded by law.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">15. Indemnity</h2>
+        <p class="text-muted-foreground">
+          You agree to indemnify us against claims, losses and reasonable costs arising from your
+          use of a product, your breach of these terms, or your infringement of someone else's
+          rights.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">16. Changes to these terms</h2>
+        <p class="text-muted-foreground">
+          We may update these terms. If a change materially affects you, we will give notice by
+          email or in the product before it takes effect. Continuing to use a product after that
+          means you accept the updated terms.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">17. Governing law</h2>
+        <p class="text-muted-foreground">
+          These terms are governed by the laws of the Hong Kong Special Administrative Region, and
+          the courts of Hong Kong have exclusive jurisdiction, unless a product's own terms provide
+          otherwise.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">18. Contact</h2>
+        <p class="text-muted-foreground">
+          Questions about these terms: <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href="mailto:contact@gone-coding.com">contact@gone-coding.com</a>.
+          For help with a specific product, write to its own support address:
+          <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href="mailto:contact@sslboard.com">contact@sslboard.com</a>
+          or
+          <a class="underline decoration-primary/60 underline-offset-4 hover:decoration-primary" href="mailto:contact@quicks3.com">contact@quicks3.com</a>.
+        </p>
+      </section>
+    </div>
+  </article>
+</Layout>
